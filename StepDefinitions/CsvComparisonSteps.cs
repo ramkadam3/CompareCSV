@@ -35,7 +35,8 @@ namespace CompareCSV.StepDefinitions
         public void WhenICompareTheFilesUsingPrimaryKeyFields(string keyFields)
         {
             _keyFields = new List<string>(keyFields.Split(','));
-            _outputDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Output"); 
+            _outputDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Output");
+            ScenarioContext.Current["OutputDir"]=_outputDir;
             _outputDir = Path.GetFullPath(_outputDir);
             Directory.CreateDirectory(_outputDir);
             var comparer = new CsvComparer(_keyFields);
@@ -45,6 +46,7 @@ namespace CompareCSV.StepDefinitions
         [Then(@"I should see the comparison results in the output directory ""(.*)""")]
         public void ThenIShouldSeeTheComparisonResults(string outputDir)
         {
+            outputDir= ScenarioContext.Current["OutputDir"].ToString();
             Assert.IsTrue(File.Exists(Path.Combine(outputDir, "MissingInActual.txt")));
             Assert.IsTrue(File.Exists(Path.Combine(outputDir, "MissingInExpected.txt")));
             Assert.IsTrue(File.Exists(Path.Combine(outputDir, "FieldMismatches.txt")));
