@@ -1,0 +1,2 @@
+Failed Fieldname: Scope | Expected Input Value: "533.5761748850723" | Actual Value: "533.9761748850723" | for record having unique field(s): ID, Name with value: "001625|BAII"
+Failed Fieldname: Status | Expected Input Value: "Active" | Actual Value: "Inactive" | for record having unique field(s): ID, Name with value: "001630|BAIII"
